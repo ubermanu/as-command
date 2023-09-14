@@ -80,10 +80,6 @@ export class Command {
       helpMsg += `\n\n${this._description as string}`
     }
 
-    if (this._version) {
-      helpMsg += `\n\nVersion: ${this._version as string}`
-    }
-
     if (options.length > 0) {
       const optionsHelp = options
         .map<string>((option) => {

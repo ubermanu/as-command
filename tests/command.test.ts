@@ -14,7 +14,7 @@ describe('Program', () => {
     program.version('1.0.0')
 
     expect(program.help()).toBe(
-        'Usage: test [options] [arguments]\n\nA simple command line interface.\n\nVersion: 1.0.0'
+      'Usage: test [options] [arguments]\n\nA simple command line interface.\n\nOptions:\n\t-v, --version\tPrints current version'
     )
   })
 

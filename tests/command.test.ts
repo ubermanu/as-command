@@ -2,18 +2,19 @@
 import { Command, parseArgs } from '../assembly/command'
 
 describe('Program', () => {
-  it('prints a proper help message', () => {
+  it('prints a simple help message', () => {
     const program = new Command('test')
 
     expect(program.help()).toBe('Usage: test [options] [arguments]')
   })
 
-  it('prints a proper help message with version', () => {
+  it('prints a proper help message with description and version', () => {
     const program = new Command('test')
+    program.description('A simple command line interface.')
     program.version('1.0.0')
 
     expect(program.help()).toBe(
-      'Usage: test [options] [arguments]\n\nVersion: 1.0.0'
+        'Usage: test [options] [arguments]\n\nA simple command line interface.\n\nVersion: 1.0.0'
     )
   })
 

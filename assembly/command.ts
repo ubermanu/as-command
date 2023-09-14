@@ -2,11 +2,23 @@ export type ParsedArgs = Map<string, string[]>
 export type CommandHandler = (args: ParsedArgs) => void
 
 export class Command {
+  protected _description: string | null = null
   protected _version: string | null = null
   protected _options: Map<string, Option> = new Map()
   protected _handler: CommandHandler = () => {}
 
   constructor(protected name: string) {}
+
+  /**
+   * Set your command description.
+   *
+   * @example
+   *   program.description('A simple command line interface.')
+   */
+  description(description: string): Command {
+    this._description = description
+    return this
+  }
 
   /**
    * Set your command version.
@@ -49,6 +61,10 @@ export class Command {
   help(): string {
     const options = this._options.values()
     let helpMsg = `Usage: ${this.name} [options] [arguments]`
+
+    if (this._description) {
+        helpMsg += `\n\n${this._description as string}`
+    }
 
     if (this._version) {
       helpMsg += `\n\nVersion: ${this._version as string}`

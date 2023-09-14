@@ -1,5 +1,5 @@
 import { Command } from './command'
 
-export function program(name: string): Command {
+export function command(name: string): Command {
   return new Command(name)
 }

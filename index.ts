@@ -1,1 +1,1 @@
-export { program as default } from './assembly'
+export { command as default } from './assembly'

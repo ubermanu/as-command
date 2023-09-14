@@ -21,13 +21,15 @@ export class Command {
   }
 
   /**
-   * Set your command version.
+   * Set your command version. Also prints the version when the `-v` or
+   * `--version` flag is used.
    *
    * @example
    *   program.version('3.18.5')
    */
   version(version: string): Command {
     this._version = version
+    this.option('-v, --version', 'Prints current version')
     return this
   }
 
@@ -51,7 +53,19 @@ export class Command {
   }
 
   parse(args: string[]): void {
-    this._handler(parseArgs(args))
+    const parsedArgs = parseArgs(args)
+
+    if (parsedArgs.has('help') || parsedArgs.has('h')) {
+      console.log(this.help())
+      return
+    }
+
+    if (this._version && (parsedArgs.has('version') || parsedArgs.has('v'))) {
+      console.log(this._version as string)
+      return
+    }
+
+    this._handler(parsedArgs)
   }
 
   /**
@@ -63,7 +77,7 @@ export class Command {
     let helpMsg = `Usage: ${this.name} [options] [arguments]`
 
     if (this._description) {
-        helpMsg += `\n\n${this._description as string}`
+      helpMsg += `\n\n${this._description as string}`
     }
 
     if (this._version) {

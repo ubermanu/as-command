@@ -1,0 +1,33 @@
+{
+  "name": "as-command",
+  "version": "0.1.0",
+  "description": "Command line arguments parser for AssemblyScript",
+  "keywords": [
+    "assemblyscript",
+    "assemblyscript-library",
+    "command-line",
+    "cli",
+    "arguments",
+    "parser"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ubermanu/magefront.git"
+  },
+  "license": "MIT",
+  "author": "Emmanuel Vodor <manu@paca.happy-dev.fr>",
+  "type": "module",
+  "scripts": {
+    "checks": "asc ./assembly --noEmit --measure",
+    "test": "asp --verbose",
+    "test:summary": "asp --summary"
+  },
+  "prettier": "@ubermanu/prettier-config",
+  "devDependencies": {
+    "@as-pect/assembly": "^8.1.0",
+    "@as-pect/cli": "^8.1.0",
+    "@ubermanu/prettier-config": "^3.2.0",
+    "assemblyscript": "^0.27.9",
+    "prettier": "^3.0.3"
+  }
+}

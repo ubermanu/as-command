@@ -134,7 +134,16 @@ export function parseArgs(args: string[]): ParsedArgs {
       }
     } else if (arg.startsWith('-')) {
       currentOption = arg.slice(1)
-      if (!parsedArgs.has(currentOption)) {
+      if (currentOption.length > 1) {
+        // Handle stacked short options
+        for (let j = 0; j < currentOption.length; j++) {
+          const option = currentOption.charAt(j)
+          if (!parsedArgs.has(option)) {
+            parsedArgs.set(option, [])
+          }
+        }
+        currentOption = null
+      } else if (!parsedArgs.has(currentOption)) {
         parsedArgs.set(currentOption, [])
       }
     } else if (currentOption) {

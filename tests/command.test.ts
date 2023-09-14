@@ -69,4 +69,17 @@ describe('Program', () => {
     expect(args.get('_')).toInclude('bar')
     expect(args.get('_')).toInclude('baz')
   })
+
+  it('parses stacked short options', () => {
+    const args = parseArgs(['-pfo'])
+
+    expect(args.has('p')).toBe(true)
+    expect(args.get('p').length).toBe(0)
+
+    expect(args.has('f')).toBe(true)
+    expect(args.get('f').length).toBe(0)
+
+    expect(args.has('o')).toBe(true)
+    expect(args.get('o').length).toBe(0)
+  })
 })

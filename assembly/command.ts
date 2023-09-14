@@ -7,7 +7,9 @@ export class Command {
   protected _options: Map<string, Option> = new Map()
   protected _handler: CommandHandler = () => {}
 
-  constructor(protected name: string) {}
+  constructor(protected name: string) {
+    this.option('-h, --help', 'Prints help message')
+  }
 
   /**
    * Set your command description.

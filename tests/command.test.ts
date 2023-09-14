@@ -5,7 +5,7 @@ describe('Program', () => {
   it('prints a simple help message', () => {
     const program = new Command('test')
 
-    expect(program.help()).toBe('Usage: test [options] [arguments]')
+    expect(program.help()).toBe('Usage: test [options] [arguments]\n\nOptions:\n\t-h, --help\tPrints help message')
   })
 
   it('prints a proper help message with description and version', () => {
@@ -14,7 +14,7 @@ describe('Program', () => {
     program.version('1.0.0')
 
     expect(program.help()).toBe(
-      'Usage: test [options] [arguments]\n\nA simple command line interface.\n\nOptions:\n\t-v, --version\tPrints current version'
+      'Usage: test [options] [arguments]\n\nA simple command line interface.\n\nOptions:\n\t-h, --help\tPrints help message\n\t-v, --version\tPrints current version'
     )
   })
 
@@ -26,7 +26,7 @@ describe('Program', () => {
     program.option('-b, --bbq-sauce', 'Add bbq sauce')
 
     expect(program.help()).toBe(
-      'Usage: test [options] [arguments]\n\nOptions:\n\t-p, --peppers\tAdd peppers\n\t-o, --onions\tAdd onions\n\t-b, --bbq-sauce\tAdd bbq sauce'
+      'Usage: test [options] [arguments]\n\nOptions:\n\t-h, --help\tPrints help message\n\t-p, --peppers\tAdd peppers\n\t-o, --onions\tAdd onions\n\t-b, --bbq-sauce\tAdd bbq sauce'
     )
   })
 

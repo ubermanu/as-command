@@ -45,6 +45,22 @@ describe('Command', () => {
     program.parse(['-p', '-o'])
   })
 
+  it('does not returns entries for the options that were not used', () => {
+    const program = new Command('test')
+
+    program.option('-p, --peppers', 'Add peppers')
+    program.option('-o, --onions', 'Add onions')
+    program.option('-b, --bbq-sauce', 'Add bbq sauce')
+
+    program.action(function (args: ParsedArgs): void {
+      expect(args.has('peppers')).toBe(false)
+      expect(args.has('onions')).toBe(false)
+      expect(args.has('bbq-sauce')).toBe(false)
+    })
+
+    program.parse([])
+  })
+
   it('returns the default value for an option', () => {
     const program = new Command('test')
 

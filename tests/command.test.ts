@@ -76,4 +76,23 @@ describe('Command', () => {
 
     program.parse([])
   })
+
+  it('set options values for both variants', () => {
+    const program = new Command('test')
+
+    program.option('-p, --peppers', 'Add peppers')
+
+    program.action(function (args: ParsedArgs): void {
+        expect(args.has('peppers')).toBe(true)
+        expect(args.get('peppers').length).toBe(1)
+        expect(args.get('peppers')).toContain('red')
+
+        expect(args.has('p')).toBe(true)
+        expect(args.get('p').length).toBe(1)
+        expect(args.get('p')).toContain('red')
+    })
+
+    program.parse(['-p', 'red'])
+    program.parse(['--peppers', 'red'])
+  })
 })

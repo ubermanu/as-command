@@ -110,6 +110,21 @@ export class Command {
     // So if the parameters are `-p, --peppers` and you have it both, merge the
     // values.
 
+    const namedOptions = this.getNamedOptions()
+    const optionsKeys = parsedArgs.keys()
+
+    for (let i = 0; i < optionsKeys.length; i++) {
+      const key = optionsKeys[i]
+      if (namedOptions.has(key)) {
+        const identifiers = namedOptions.get(key).trimmedIdentifiers
+
+        for (let j = 0; j < identifiers.length; j++) {
+          const identifier = identifiers[j]
+          parsedArgs.set(identifier, parsedArgs.get(key))
+        }
+      }
+    }
+
     const realArgs: ParsedArgs = new Map()
     realArgs.set('_', parsedArgs.get('_'))
 
@@ -117,9 +132,7 @@ export class Command {
 
     for (let i = 0; i < options.length; i++) {
       const option = options[i]
-      const identifiers = option.identifiers.map((id: string) =>
-        trimLeft(id, '-')
-      )
+      const identifiers = option.trimmedIdentifiers
 
       for (let j = 0; j < identifiers.length; j++) {
         const identifier = identifiers[j]
@@ -184,9 +197,7 @@ export class Command {
 
     for (let i = 0; i < options.length; i++) {
       const option = options[i]
-      const identifiers = option.identifiers.map((id: string) =>
-        trimLeft(id, '-')
-      )
+      const identifiers = option.trimmedIdentifiers
 
       for (let j = 0; j < identifiers.length; j++) {
         const identifier = identifiers[j]
@@ -196,12 +207,4 @@ export class Command {
 
     return namedOptions
   }
-}
-
-function trimLeft(str: string, char: string = ' '): string {
-  let i = 0
-  while (i < str.length && str.charAt(i) === char) {
-    i++
-  }
-  return str.slice(i)
 }

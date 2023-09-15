@@ -17,6 +17,10 @@
   "license": "MIT",
   "author": "Emmanuel Vodor <manu@paca.happy-dev.fr>",
   "type": "module",
+  "files": [
+    "assembly",
+    "index.ts"
+  ],
   "scripts": {
     "checks": "asc ./assembly --noEmit --measure",
     "test": "asp --verbose",

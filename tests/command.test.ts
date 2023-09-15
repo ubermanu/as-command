@@ -5,7 +5,9 @@ describe('Program', () => {
   it('prints a simple help message', () => {
     const program = new Command('test')
 
-    expect(program.help()).toBe('Usage: test [options] [arguments]\n\nOptions:\n\t-h, --help\tPrints help message')
+    expect(program.help()).toBe(
+      'Usage: test [options] [arguments]\n\nOptions:\n\t-h, --help\tPrints help message'
+    )
   })
 
   it('prints a proper help message with description and version', () => {
@@ -81,5 +83,38 @@ describe('Program', () => {
 
     expect(args.has('o')).toBe(true)
     expect(args.get('o').length).toBe(0)
+  })
+
+  it('handles boolean short options', () => {
+    const args = parseArgs(['-p', '-o', 'foo', 'bar'], ['p', 'o'])
+
+    expect(args.has('p')).toBe(true)
+    expect(args.get('p').length).toBe(0)
+
+    expect(args.has('o')).toBe(true)
+    expect(args.get('o').length).toBe(0)
+
+    expect(args.has('_')).toBe(true)
+    expect(args.get('_').length).toBe(2)
+    expect(args.get('_')).toInclude('foo')
+    expect(args.get('_')).toInclude('bar')
+  })
+
+  it('handles boolean long options', () => {
+    const args = parseArgs(
+      ['--peppers', '--onions', 'foo', 'bar'],
+      ['peppers', 'onions']
+    )
+
+    expect(args.has('peppers')).toBe(true)
+    expect(args.get('peppers').length).toBe(0)
+
+    expect(args.has('onions')).toBe(true)
+    expect(args.get('onions').length).toBe(0)
+
+    expect(args.has('_')).toBe(true)
+    expect(args.get('_').length).toBe(2)
+    expect(args.get('_')).toInclude('foo')
+    expect(args.get('_')).toInclude('bar')
   })
 })

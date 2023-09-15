@@ -49,7 +49,16 @@ export class Command {
     return this
   }
 
-  /** Attach the handler. */
+  /**
+   * Attach the command handler.
+   *
+   * @example
+   *   program.action((args: ParsedArgs) => {
+   *     if (args.has('name')) {
+   *       console.log(`Hello ${args.get('name')}`)
+   *     }
+   *   })
+   */
   action(handler: CommandHandler): Command {
     this._handler = handler
     return this
@@ -66,6 +75,19 @@ export class Command {
     if (this._version && (parsedArgs.has('version') || parsedArgs.has('v'))) {
       console.log(this._version as string)
       return
+    }
+
+    const argKeys = parsedArgs.keys()
+
+    for (let i = 0; i < argKeys.length; i++) {
+      const key = argKeys[i]
+      if (this._options.has(key) === false) {
+        // Filter out unknown options
+        parsedArgs.delete(key)
+      } else if (parsedArgs.get(key).length === 0 && this._options.has(key)) {
+        // Set default value if no value is provided
+        parsedArgs.set(key, this._options.get(key).defaultValue)
+      }
     }
 
     this._handler(parsedArgs)

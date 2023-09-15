@@ -1,5 +1,6 @@
 /// <reference types="@as-pect/assembly/types/as-pect" />
 import { Command } from '../assembly/command'
+import { ParsedArgs } from '../assembly/parse-args'
 
 describe('Command', () => {
   it('prints a simple help message', () => {
@@ -30,5 +31,16 @@ describe('Command', () => {
     expect(program.help()).toBe(
       'Usage: test [options] [arguments]\n\nOptions:\n\t-h, --help\tPrints help message\n\t-p, --peppers\tAdd peppers\n\t-o, --onions\tAdd onions\n\t-b, --bbq-sauce\tAdd bbq sauce'
     )
+  })
+
+  it('filters out unknown options', () => {
+    const program = new Command('test')
+
+    program.action(function (args: ParsedArgs): void {
+      expect(args.has('p')).toBe(false)
+      expect(args.has('o')).toBe(false)
+    })
+
+    program.parse(['-p', '-o'])
   })
 })

@@ -33,6 +33,7 @@ describe('Command', () => {
     )
   })
 
+  // TODO: It should print the help message on unknown options
   it('filters out unknown options', () => {
     const program = new Command('test')
 
@@ -42,5 +43,37 @@ describe('Command', () => {
     })
 
     program.parse(['-p', '-o'])
+  })
+
+  it('returns the default value for an option', () => {
+    const program = new Command('test')
+
+    program.option('--peppers', 'Add peppers', ['green'])
+
+    program.action(function (args: ParsedArgs): void {
+      expect(args.has('peppers')).toBe(true)
+      expect(args.get('peppers').length).toBe(1)
+      expect(args.get('peppers')).toContain('green')
+    })
+
+    program.parse([])
+  })
+
+  it('returns the default value for both option variants', () => {
+    const program = new Command('test')
+
+    program.option('-p, --peppers', 'Add peppers', ['green'])
+
+    program.action(function (args: ParsedArgs): void {
+      expect(args.has('peppers')).toBe(true)
+      expect(args.get('peppers').length).toBe(1)
+      expect(args.get('peppers')).toContain('green')
+
+      expect(args.has('p')).toBe(true)
+      expect(args.get('p').length).toBe(1)
+      expect(args.get('p')).toContain('green')
+    })
+
+    program.parse([])
   })
 })

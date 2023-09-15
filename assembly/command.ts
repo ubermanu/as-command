@@ -1,16 +1,22 @@
+import { Option } from './option'
 import { parseArgs, ParsedArgs } from './parse-args'
 
 export type CommandHandler = (args: ParsedArgs) => void
 export type LogHandler = (message: string) => void
 
 export class Command {
-  protected _description: string | null = null
-  protected _version: string | null = null
-  protected _options: Map<string, Option> = new Map()
-  protected _handler: CommandHandler = () => {}
-  protected _log: LogHandler = () => {}
+  protected _description: string | null
+  protected _version: string | null
+  protected _options: Map<string, Option>
+  protected _handler: CommandHandler
+  protected _log: LogHandler
 
   constructor(protected name: string) {
+    this._description = null
+    this._version = null
+    this._options = new Map()
+    this._handler = () => {}
+    this._log = () => {}
     this.option('-h, --help', 'Prints help message')
   }
 
@@ -47,7 +53,16 @@ export class Command {
     description: string,
     defaultValue: string[] = []
   ): Command {
-    this._options.set(name, new Option(name, description, defaultValue))
+    const ids = name.split(',').map((part: string) => part.trim())
+
+    for (let i = 0; i < ids.length; i++) {
+      const id = ids[i]
+      if (!Option.validateIdentifier(id)) {
+        throw new Error(`Invalid option name: "${id}"`)
+      }
+    }
+
+    this._options.set(name, new Option(ids, description, defaultValue))
     return this
   }
 
@@ -77,6 +92,7 @@ export class Command {
     return this
   }
 
+  /** Parse the arguments and call the command handler. */
   parse(args: string[]): void {
     const parsedArgs = parseArgs(args)
 
@@ -85,25 +101,42 @@ export class Command {
       return
     }
 
-    if (this._version && (parsedArgs.has('version') || parsedArgs.has('v'))) {
+    // Fore each options, check if it is present in the parsed arguments.
+    // If it is, add it to the real arguments.
+    // If it is not, check if it has a default value. If it does, add it to the
+    // real arguments.
+    // Also set the same values to all the identifiers of the option (if it has
+    // multiple identifiers).
+    // So if the parameters are `-p, --peppers` and you have it both, merge the
+    // values.
+
+    const realArgs: ParsedArgs = new Map()
+    realArgs.set('_', parsedArgs.get('_'))
+
+    const options = this._options.values()
+
+    for (let i = 0; i < options.length; i++) {
+      const option = options[i]
+      const identifiers = option.identifiers.map((id: string) =>
+        trimLeft(id, '-')
+      )
+
+      for (let j = 0; j < identifiers.length; j++) {
+        const identifier = identifiers[j]
+        if (parsedArgs.has(identifier)) {
+          realArgs.set(identifier, parsedArgs.get(identifier))
+        } else if (option.defaultValue.length > 0) {
+          realArgs.set(identifier, option.defaultValue)
+        }
+      }
+    }
+
+    if (this._version && (realArgs.has('version') || realArgs.has('v'))) {
       this._log(this._version as string)
       return
     }
 
-    const argKeys = parsedArgs.keys()
-
-    for (let i = 0; i < argKeys.length; i++) {
-      const key = argKeys[i]
-      if (this._options.has(key) === false) {
-        // Filter out unknown options
-        parsedArgs.delete(key)
-      } else if (parsedArgs.get(key).length === 0 && this._options.has(key)) {
-        // Set default value if no value is provided
-        parsedArgs.set(key, this._options.get(key).defaultValue)
-      }
-    }
-
-    this._handler(parsedArgs)
+    this._handler(realArgs)
   }
 
   /**
@@ -130,13 +163,45 @@ export class Command {
 
     return helpMsg
   }
+
+  /**
+   * Returns a map of options with one of their identifiers as key. If an option
+   * has multiple identifiers, it is returned multiple times.
+   *
+   * @example
+   *   const options = this.getNamedOptions()
+   *
+   *   options = Map {
+   *   'h' => Option,
+   *   'help' => Option,
+   *   'v' => Option,
+   *   'version' => Option,
+   *   }
+   */
+  protected getNamedOptions(): Map<string, Option> {
+    const namedOptions: Map<string, Option> = new Map()
+    const options = this._options.values()
+
+    for (let i = 0; i < options.length; i++) {
+      const option = options[i]
+      const identifiers = option.identifiers.map((id: string) =>
+        trimLeft(id, '-')
+      )
+
+      for (let j = 0; j < identifiers.length; j++) {
+        const identifier = identifiers[j]
+        namedOptions.set(identifier, option)
+      }
+    }
+
+    return namedOptions
+  }
 }
 
-// TODO: Use generics
-export class Option {
-  constructor(
-    public name: string,
-    public description: string,
-    public defaultValue: string[] = []
-  ) {}
+function trimLeft(str: string, char: string = ' '): string {
+  let i = 0
+  while (i < str.length && str.charAt(i) === char) {
+    i++
+  }
+  return str.slice(i)
 }

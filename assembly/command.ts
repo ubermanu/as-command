@@ -1,12 +1,14 @@
 import { parseArgs, ParsedArgs } from './parse-args'
 
 export type CommandHandler = (args: ParsedArgs) => void
+export type LogHandler = (message: string) => void
 
 export class Command {
   protected _description: string | null = null
   protected _version: string | null = null
   protected _options: Map<string, Option> = new Map()
   protected _handler: CommandHandler = () => {}
+  protected _log: LogHandler = () => {}
 
   constructor(protected name: string) {
     this.option('-h, --help', 'Prints help message')
@@ -64,16 +66,27 @@ export class Command {
     return this
   }
 
+  /**
+   * Attach the log handler.
+   *
+   * @example
+   *   program.log((message: string) => console.log(message))
+   */
+  log(handler: LogHandler): Command {
+    this._log = handler
+    return this
+  }
+
   parse(args: string[]): void {
     const parsedArgs = parseArgs(args)
 
     if (parsedArgs.has('help') || parsedArgs.has('h')) {
-      console.log(this.help())
+      this._log(this.help())
       return
     }
 
     if (this._version && (parsedArgs.has('version') || parsedArgs.has('v'))) {
-      console.log(this._version as string)
+      this._log(this._version as string)
       return
     }
 

@@ -27,7 +27,10 @@ export function parseArgs(args: string[], booleans: string[] = []): ParsedArgs {
   // Can have multiple times the same option.
   for (let i = 0; i < args.length; i++) {
     const arg = args[i]
-    if (arg.startsWith('--')) {
+    if (arg === '--') {
+      // Stop parsing options after this
+      currentOption = null
+    } else if (arg.startsWith('--')) {
       currentOption = arg.slice(2)
       if (!parsedArgs.has(currentOption)) {
         parsedArgs.set(currentOption, [])

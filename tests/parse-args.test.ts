@@ -87,4 +87,15 @@ describe('parseArgs', () => {
     expect(args.get('_')).toInclude('foo')
     expect(args.get('_')).toInclude('bar')
   })
+
+  it('handles stop early operator', () => {
+    const args = parseArgs(['-i', '--', 'index.html'])
+
+    expect(args.has('i')).toBe(true)
+    expect(args.get('i').length).toBe(0)
+
+    expect(args.has('_')).toBe(true)
+    expect(args.get('_').length).toBe(1)
+    expect(args.get('_')).toInclude('index.html')
+  })
 })

@@ -10,13 +10,13 @@ devDependencies:
     version: 8.1.0
   '@as-pect/cli':
     specifier: ^8.1.0
-    version: 8.1.0(assemblyscript@0.27.9)
+    version: 8.1.0(assemblyscript@0.27.12)
   '@ubermanu/prettier-config':
     specifier: ^3.2.0
     version: 3.2.0(prettier@3.0.3)
   assemblyscript:
     specifier: ^0.27.9
-    version: 0.27.9
+    version: 0.27.12
   prettier:
     specifier: ^3.0.3
     version: 3.0.3
@@ -27,12 +27,12 @@ packages:
     resolution: {integrity: sha512-JPLYG9aVuncJaZ8sAqsb2oOebssbbTNahAB4WL4k4mwzgPw5H0gNB14YxSHr8wAiWvYUqLPYb+dGvGuFCUFcpQ==}
     dev: true
 
-  /@as-covers/core@0.4.2(assemblyscript@0.27.9):
+  /@as-covers/core@0.4.2(assemblyscript@0.27.12):
     resolution: {integrity: sha512-386ZK6yZwDXfnCBFabKDQtTuvDZmR1aW7eQBp89oN6WwXj+/1FZjIjyMudI1z5qcEnTJ+yS9BGLOC5KH0XDQGg==}
     dependencies:
       '@as-covers/assembly': 0.4.1
       '@as-covers/glue': 0.4.2
-      '@as-covers/transform': 0.4.2(assemblyscript@0.27.9)
+      '@as-covers/transform': 0.4.2(assemblyscript@0.27.12)
     transitivePeerDependencies:
       - assemblyscript
     dev: true
@@ -44,11 +44,11 @@ packages:
       table: 6.8.1
     dev: true
 
-  /@as-covers/transform@0.4.2(assemblyscript@0.27.9):
+  /@as-covers/transform@0.4.2(assemblyscript@0.27.12):
     resolution: {integrity: sha512-d8NGZbXJvXnZi/gOKTLnaMl138cOpFqTTvE0gXL3rSzEPE9948dVc+ylof+lfAiQJHWz2uAvGAUhFMN3TR5NPg==}
     dependencies:
       line-column: 1.0.2
-      visitor-as: 0.11.4(assemblyscript@0.27.9)
+      visitor-as: 0.11.4(assemblyscript@0.27.12)
     transitivePeerDependencies:
       - assemblyscript
     dev: true
@@ -57,18 +57,18 @@ packages:
     resolution: {integrity: sha512-ALDm5M0Zx/hoFZ27vS3/kjkzMHbcPt2IBIkNjJz0M798meRCJV6ZWbChfmi4kDcMqaPk/awU54b4Bpx+VxBKfg==}
     dev: true
 
-  /@as-pect/cli@8.1.0(assemblyscript@0.27.9):
+  /@as-pect/cli@8.1.0(assemblyscript@0.27.12):
     resolution: {integrity: sha512-bu2PUnWdYcF3aQ7X9rB6GXiE+b7Pi0MGMOyiShqdGlDCr3vKoD1kAK5Kb5rqY3tWRCC4gWO7/wupEynem6Qq0Q==}
     hasBin: true
     peerDependencies:
       assemblyscript: ^0.27.2
     dependencies:
-      '@as-covers/core': 0.4.2(assemblyscript@0.27.9)
-      '@as-covers/transform': 0.4.2(assemblyscript@0.27.9)
+      '@as-covers/core': 0.4.2(assemblyscript@0.27.12)
+      '@as-covers/transform': 0.4.2(assemblyscript@0.27.12)
       '@as-pect/assembly': 8.1.0
       '@as-pect/core': 8.1.0
       '@as-pect/transform': 8.1.0
-      assemblyscript: 0.27.9
+      assemblyscript: 0.27.12
       chalk: 5.3.0
       chalk-template: 0.4.0
       commander: 9.5.0
@@ -85,7 +85,7 @@ packages:
       '@as-pect/assembly': 8.1.0
       '@as-pect/snapshots': 8.1.0
       '@assemblyscript/loader': 0.25.2
-      assemblyscript: 0.27.9
+      assemblyscript: 0.27.12
       chalk: 5.3.0
       chalk-template: 0.4.0
       long: 5.2.3
@@ -118,7 +118,7 @@ packages:
   /@as-pect/transform@8.1.0:
     resolution: {integrity: sha512-dyWSMjsNWg8TmIAf7GXmvlQSae155pGR8rEIteHCNo8kn4boLQ8IGlL6k8DdacJl58mtHRQWx+N3v4u0RN5yfg==}
     dependencies:
-      assemblyscript: 0.27.9
+      assemblyscript: 0.27.12
     dev: true
 
   /@assemblyscript/loader@0.25.2:
@@ -273,8 +273,8 @@ packages:
       color-convert: 2.0.1
     dev: true
 
-  /assemblyscript@0.27.9:
-    resolution: {integrity: sha512-cFE/AMjVtBQ2iKFZPu/a3Z/KJzGex61C+X+y3GuLJ8Hr9Zdf46sy/JlIl6ikothQd2umM9CQDAD/uAPAEHL+oA==}
+  /assemblyscript@0.27.12:
+    resolution: {integrity: sha512-+reiZWOi0Rxi3J2XLI4YQdMDkd0PaLKFRFzg8pvpHfO0hk5o8ay7nFmoyG1RuEQ90xgkYuNi5c/AN1OPKqL5+Q==}
     engines: {node: '>=16', npm: '>=7'}
     hasBin: true
     dependencies:
@@ -1566,12 +1566,12 @@ packages:
       sade: 1.8.1
     dev: true
 
-  /visitor-as@0.11.4(assemblyscript@0.27.9):
+  /visitor-as@0.11.4(assemblyscript@0.27.12):
     resolution: {integrity: sha512-uih7AooY2V3LhzobjLqyEQzhYYBGeq0y/rZk295foM1Ko498f24NNXBDyM1SgzcLMFCAT/fpmSRco1BpTIdKNQ==}
     peerDependencies:
       assemblyscript: ^0.25.0
     dependencies:
-      assemblyscript: 0.27.9
+      assemblyscript: 0.27.12
       lodash.clonedeep: 4.5.0
       ts-mixer: 6.0.3
     dev: true

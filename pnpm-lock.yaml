@@ -13,13 +13,13 @@ devDependencies:
     version: 8.1.0(assemblyscript@0.27.9)
   '@ubermanu/prettier-config':
     specifier: ^3.2.0
-    version: 3.2.0(prettier@3.0.3)
+    version: 3.2.0(prettier@3.1.0)
   assemblyscript:
     specifier: ^0.27.9
     version: 0.27.9
   prettier:
     specifier: ^3.0.3
-    version: 3.0.3
+    version: 3.1.0
 
 packages:
 
@@ -216,7 +216,7 @@ packages:
     resolution: {integrity: sha512-d0XxK3YTObnWVp6rZuev3c49+j4Lo8g4L1ZRm9z5L0xpoZycUPshHgczK5gsUMaZOstjVYYi09p5gYvUtfChYw==}
     dev: true
 
-  /@ubermanu/prettier-config@3.2.0(prettier@3.0.3):
+  /@ubermanu/prettier-config@3.2.0(prettier@3.1.0):
     resolution: {integrity: sha512-9iGmOQ9YZPyTqGjJPorEmCZ7C3xk0kGn1zXrxVo8CHbY/FdcoFOMjAA7ultZ4ne4fKxG/xt0OS2b9LiiRmGVJg==}
     peerDependencies:
       prettier: 3.x
@@ -229,11 +229,11 @@ packages:
         optional: true
     dependencies:
       postcss: 8.4.29
-      prettier: 3.0.3
-      prettier-plugin-css-order: 2.0.0(postcss@8.4.29)(prettier@3.0.3)
-      prettier-plugin-jsdoc: 1.0.2(prettier@3.0.3)
-      prettier-plugin-organize-imports: 3.2.3(prettier@3.0.3)(typescript@5.2.2)
-      prettier-plugin-packagejson: 2.4.5(prettier@3.0.3)
+      prettier: 3.1.0
+      prettier-plugin-css-order: 2.0.0(postcss@8.4.29)(prettier@3.1.0)
+      prettier-plugin-jsdoc: 1.0.2(prettier@3.1.0)
+      prettier-plugin-organize-imports: 3.2.3(prettier@3.1.0)(typescript@5.2.2)
+      prettier-plugin-packagejson: 2.4.5(prettier@3.1.0)
       try-require: 1.2.1
       typescript: 5.2.2
     transitivePeerDependencies:
@@ -1268,7 +1268,7 @@ packages:
       source-map-js: 1.0.2
     dev: true
 
-  /prettier-plugin-css-order@2.0.0(postcss@8.4.29)(prettier@3.0.3):
+  /prettier-plugin-css-order@2.0.0(postcss@8.4.29)(prettier@3.1.0):
     resolution: {integrity: sha512-BCstZZ78G6FH/Ms1hl5ZLnSMso3ModM+SEZY8QrJzgyxjuCjSrS2bveeLq9wJMn20h9tAb6+C2FZPh5qdZ2qsw==}
     engines: {node: '>=16'}
     peerDependencies:
@@ -1277,12 +1277,12 @@ packages:
       css-declaration-sorter: 7.0.3(postcss@8.4.29)
       postcss-less: 6.0.0(postcss@8.4.29)
       postcss-scss: 4.0.8(postcss@8.4.29)
-      prettier: 3.0.3
+      prettier: 3.1.0
     transitivePeerDependencies:
       - postcss
     dev: true
 
-  /prettier-plugin-jsdoc@1.0.2(prettier@3.0.3):
+  /prettier-plugin-jsdoc@1.0.2(prettier@3.1.0):
     resolution: {integrity: sha512-mhLT3qiSmfzjOEDvgLntX3XmSJaiDrgoN7WmOp4IH2mZ6LhbvZAnPDJH3Rs0k1O6WR7HcmM92fU1ArB0ALLG+A==}
     engines: {node: '>=14.13.1 || >=16.0.0'}
     peerDependencies:
@@ -1291,12 +1291,12 @@ packages:
       binary-searching: 2.0.5
       comment-parser: 1.4.0
       mdast-util-from-markdown: 1.3.1
-      prettier: 3.0.3
+      prettier: 3.1.0
     transitivePeerDependencies:
       - supports-color
     dev: true
 
-  /prettier-plugin-organize-imports@3.2.3(prettier@3.0.3)(typescript@5.2.2):
+  /prettier-plugin-organize-imports@3.2.3(prettier@3.1.0)(typescript@5.2.2):
     resolution: {integrity: sha512-KFvk8C/zGyvUaE3RvxN2MhCLwzV6OBbFSkwZ2OamCrs9ZY4i5L77jQ/w4UmUr+lqX8qbaqVq6bZZkApn+IgJSg==}
     peerDependencies:
       '@volar/vue-language-plugin-pug': ^1.0.4
@@ -1309,11 +1309,11 @@ packages:
       '@volar/vue-typescript':
         optional: true
     dependencies:
-      prettier: 3.0.3
+      prettier: 3.1.0
       typescript: 5.2.2
     dev: true
 
-  /prettier-plugin-packagejson@2.4.5(prettier@3.0.3):
+  /prettier-plugin-packagejson@2.4.5(prettier@3.1.0):
     resolution: {integrity: sha512-glG71jE1gO3y5+JNAhC8X+4yrlN28rub6Aj461SKbaPie9RgMiHKcInH2Moi2VGOfkTXaEHBhg4uVMBqa+kBUA==}
     peerDependencies:
       prettier: '>= 1.16.0'
@@ -1321,13 +1321,13 @@ packages:
       prettier:
         optional: true
     dependencies:
-      prettier: 3.0.3
+      prettier: 3.1.0
       sort-package-json: 2.5.1
       synckit: 0.8.5
     dev: true
 
-  /prettier@3.0.3:
-    resolution: {integrity: sha512-L/4pUDMxcNa8R/EthV08Zt42WBO4h1rarVtK0K+QJG0X187OLo7l699jWw0GKuwzkPQ//jMFA/8Xm6Fh3J/DAg==}
+  /prettier@3.1.0:
+    resolution: {integrity: sha512-TQLvXjq5IAibjh8EpBIkNKxO749UEWABoiIZehEPiY4GNpVdhaFKqSTu+QrlU6D2dPAfubRmtJTi4K4YkQ5eXw==}
     engines: {node: '>=14'}
     hasBin: true
     dev: true

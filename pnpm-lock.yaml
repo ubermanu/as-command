@@ -13,7 +13,7 @@ devDependencies:
     version: 8.1.0(assemblyscript@0.27.22)
   '@ubermanu/prettier-config':
     specifier: ^3.2.0
-    version: 3.2.0(prettier@3.1.1)
+    version: 3.3.0(prettier@3.1.1)
   assemblyscript:
     specifier: ^0.27.9
     version: 0.27.22
@@ -216,8 +216,8 @@ packages:
     resolution: {integrity: sha512-d0XxK3YTObnWVp6rZuev3c49+j4Lo8g4L1ZRm9z5L0xpoZycUPshHgczK5gsUMaZOstjVYYi09p5gYvUtfChYw==}
     dev: true
 
-  /@ubermanu/prettier-config@3.2.0(prettier@3.1.1):
-    resolution: {integrity: sha512-9iGmOQ9YZPyTqGjJPorEmCZ7C3xk0kGn1zXrxVo8CHbY/FdcoFOMjAA7ultZ4ne4fKxG/xt0OS2b9LiiRmGVJg==}
+  /@ubermanu/prettier-config@3.3.0(prettier@3.1.1):
+    resolution: {integrity: sha512-yyE/P6FsVtxqysNV5y6mH5RIJHk2xODh2haOm1slRe5aK4OikNrN3xS1qkPo3q1+ccadVIoAqk1OJ8qPy9X2JA==}
     peerDependencies:
       prettier: 3.x
       prettier-plugin-svelte: '*'
